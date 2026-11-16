@@ -16,7 +16,7 @@
 # polygenic scores per SD (autism; gestational duration and preterm birth, fetal EGG GWAS weights).
 # The 2026_08 release has SNV-only DNM tiers and no synonymous count (dropped for that cohort).
 #
-# Analyses (all children with SCQ, DNM-usable, complete on every model variable):
+# Analyses (all children with SCQ, DNM-usable, complete on every model variable; twin status needed only for no_twins):
 #   main            pooled, full model                      M0: same without the genetic terms
 #   male / female   stratified by child sex
 #   no_twins        multiple births excluded
@@ -78,12 +78,12 @@ for (cohort in COHORTS) {
   d0 <- read_input(in_dir, cohort)[dnm_ok == 1 & !is.na(scq)]
   gen <- c(GEN_MAIN, GEN_CTRL, PGS); gen <- gen[sapply(gen, function(v) v %in% names(d0) && any(!is.na(d0[[v]])))]
   zs <- c(grep("^PC[0-9]+$", names(d0), value = TRUE), grep("^src_", names(d0), value = TRUE), "coverage"); zs <- zs[zs %in% names(d0)]
-  vars <- unique(c("FID", "scq", EXPO, gen, BASE, zs, "twin")); d <- d0[complete.cases(d0[, ..vars])]
+  vars <- unique(c("FID", "scq", EXPO, gen, BASE, zs)); d <- d0[complete.cases(d0[, ..vars])]   # twin status is required only by the no_twins analysis (missing for ~11% of WES children)
   fam <- d[, .N, by = FID]
   cat(sprintf("== %s (%s): %d children, %d families, %d with >= 2 children; genetic terms: %s\n", cohort, subdir, nrow(d), nrow(fam), sum(fam$N >= 2), paste(gen, collapse = " ")))
   for (i in 1:2) for (j in (i + 1):3) if (j <= 3) { t <- tetra(d[[EXPO[i]]], d[[EXPO[j]]])
     tet_rows[[length(tet_rows) + 1]] <- data.table(cohort = cohort, x = EXPO[i], y = EXPO[j], tetrachoric = t$rho, se = t$se, phi = t$phi, n = t$n, both = t$n11, x_only = t$n10, y_only = t$n01, neither = t$n00) }
-  analyses <- list(main = d, M0 = d, male = d[sex_male == 1], female = d[sex_male == 0], no_twins = d[twin == 0], term_births = d[premature == 0], cases = d[asd == 1], controls = d[asd == 0])
+  analyses <- list(main = d, M0 = d, male = d[sex_male == 1], female = d[sex_male == 0], no_twins = d[!is.na(twin) & twin == 0], term_births = d[premature == 0], cases = d[asd == 1], controls = d[asd == 0])
   for (a in names(analyses)) {
     da <- copy(analyses[[a]]); fa <- da[, .N, by = FID]
     xs <- c(EXPO, if (a == "M0") character(0) else gen, BASE)
