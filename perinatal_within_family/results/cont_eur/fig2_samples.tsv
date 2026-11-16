@@ -1,0 +1,51 @@
+outcome	item	n	n_exposed
+scq	preg_preterm	1221	105
+scq	preg_gest_age_weeks	1221	
+scq	preg_birth_weight_sd	1246	
+scq	preg_nicu	1305	97
+scq	preg_oxygen	1293	122
+scq	preg_respiratory_distress	1295	82
+scq	preg_hyperbilirubinemia	1295	493
+scq	preg_apgar1_low	1208	71
+scq	preg_csection	1302	391
+scq	preg_labor_induced	1298	484
+srs	preg_preterm	1420	116
+srs	preg_gest_age_weeks	1420	
+srs	preg_birth_weight_sd	1448	
+srs	preg_nicu	1744	128
+srs	preg_oxygen	1721	147
+srs	preg_respiratory_distress	1728	107
+srs	preg_hyperbilirubinemia	1731	635
+srs	preg_apgar1_low	1591	94
+srs	preg_csection	1741	517
+srs	preg_labor_induced	1732	674
+vineland	preg_preterm	1423	117
+vineland	preg_gest_age_weeks	1423	
+vineland	preg_birth_weight_sd	1451	
+vineland	preg_nicu	1752	128
+vineland	preg_oxygen	1729	148
+vineland	preg_respiratory_distress	1736	108
+vineland	preg_hyperbilirubinemia	1739	640
+vineland	preg_apgar1_low	1599	95
+vineland	preg_csection	1749	521
+vineland	preg_labor_induced	1740	676
+cbcl_int	preg_preterm	1071	90
+cbcl_int	preg_gest_age_weeks	1071	
+cbcl_int	preg_birth_weight_sd	1097	
+cbcl_int	preg_nicu	1358	101
+cbcl_int	preg_oxygen	1343	120
+cbcl_int	preg_respiratory_distress	1347	88
+cbcl_int	preg_hyperbilirubinemia	1352	484
+cbcl_int	preg_apgar1_low	1230	81
+cbcl_int	preg_csection	1356	363
+cbcl_int	preg_labor_induced	1347	525
+cbcl_ext	preg_preterm	1071	90
+cbcl_ext	preg_gest_age_weeks	1071	
+cbcl_ext	preg_birth_weight_sd	1097	
+cbcl_ext	preg_nicu	1358	101
+cbcl_ext	preg_oxygen	1343	120
+cbcl_ext	preg_respiratory_distress	1347	88
+cbcl_ext	preg_hyperbilirubinemia	1352	484
+cbcl_ext	preg_apgar1_low	1230	81
+cbcl_ext	preg_csection	1356	363
+cbcl_ext	preg_labor_induced	1347	525
